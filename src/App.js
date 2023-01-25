@@ -13,10 +13,12 @@ function App() {
   }])
 
   const [select, setSelect] = useState("")
-  const handleChange = (event) => {
-    event.target.style = { background: "red" }
-    console.log(event.target.value || 32423)
-    window.alert("clicked")
+  const selectData = (value) => {
+    if(select===""){
+        setSelect(value)
+    }else{
+      setSelect(select +" , " + value)
+    }
   };
   return (
     <div className='container-fluid'>
@@ -35,48 +37,49 @@ function App() {
                 All feedback is appreciated to help us improve our offering!
               </p>
               <div className='Buttons'>
-                <button className={Btns.Btn1 ? "active" : "notActive"} onClick={() => {
+                <button value ="1" className={Btns.Btn1 ? "active" : "notActive"} onClick={(e) => {
                   setBtn(exist => ({
                     ...exist,
                     Btn1: true
                   }))
-                  setSelect("1")
+                  selectData(e.target.value)
                 } }>1</button>
-              <button className={Btns.Btn2 ? "active" : "notActive"} onClick={() => {
+              <button value ="2" className={Btns.Btn2 ? "active" : "notActive"} onClick={(e) => {
                 setBtn(exist => ({
                   ...exist,
                   Btn2: true
                 }))
-                setSelect("2")
-
+                selectData(e.target.value)
               }
               }> 2</button>
-              <button className={Btns.Btn3 ? "active" : "notActive"} onClick={() =>{ setBtn(exist => ({
+              <button value ="3" className={Btns.Btn3 ? "active" : "notActive"} onClick={(e) =>{ setBtn(exist => ({
                 ...exist,
                 Btn3: true
               })
               )
-              setSelect("3")
+              selectData(e.target.value)
+
 
               }}>
                 3
               </button>
-              <button className={Btns.Btn4 ? "active" : "notActive"} onClick={() =>{ setBtn(exist => ({
+              <button value ="4" className={Btns.Btn4 ? "active" : "notActive"} onClick={(e) =>{ setBtn(exist => ({
                 ...exist,
                 Btn4: true
               }))
-              setSelect("4")
+              selectData(e.target.value)
 
             }
             }>
                 4
               </button>
 
-              <button className={Btns.Btn5 ? "active" : "notActive"} onClick={() => {setBtn(exist => ({
+              <button value ="5" className={Btns.Btn5 ? "active" : "notActive"} onClick={(e) => {setBtn(exist => ({
                 ...exist,
                 Btn5: true
               }))
-              setSelect("5")
+              selectData(e.target.value)
+
 
               }}>
                 5
@@ -113,13 +116,13 @@ function App() {
           </svg>
         </div>
         <div className="cardText">
-            You Selected {select} out of 5
+            You Selected {select===""?<>nothing </>:select} out of 5
           </div>
 
           <span className="h1">
             Thank you!
           </span>
-          <p>
+          <p id="thanksPara" >
             We appreciate you taking the time to give a rating.
             If you ever need more support don't hesitate to get in touch!
           </p>
